@@ -21,4 +21,13 @@ View of the embedded podman deployment using ansible_runner_instance container w
 
 
 Warning messages to ignore (seen when using verbose mode)
+
 ![image](https://github.com/anapartner-com/quay-registry/assets/51460618/4e7b3fcf-d495-42d8-9b99-d9eb0dbf4bdd)
+
+Error messages to address due to unused container volumes (need clean up)
+"allocating lock for new volume: allocation failed; exceeded num_locks"
+
+![image](https://github.com/anapartner-com/quay-registry/assets/51460618/e1a51d95-eaa6-4b03-bdd8-7f9f301a0dbf)
+
+
+![image](https://github.com/anapartner-com/quay-registry/assets/51460618/44ff77ed-5f90-43eb-974f-3e07ade2c6c9)
