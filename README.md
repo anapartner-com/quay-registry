@@ -22,7 +22,8 @@ wget -nv -N  https://developers.redhat.com/content-gateway/rest/mirror/pub/opens
 
 ### To replace TLS certs, stop/start the primary container:
 
-``` systemctl stop quay-app.service
+```
+systemctl stop quay-app.service
  cp -r -p new_cert.pem ${REGISTRY_FOLDER}/quay-config/ssl.cert
  cp -r -p new_ssl.key  ${REGISTRY_FOLDER}/quay-config/ssl.key
  systemctl start quay-app.service
