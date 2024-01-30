@@ -27,7 +27,4 @@ Warning messages to ignore (seen when using verbose mode)
 Error messages to address due to unused container volumes (need clean up)
 "allocating lock for new volume: allocation failed; exceeded num_locks"
 
-![image](https://github.com/anapartner-com/quay-registry/assets/51460618/e1a51d95-eaa6-4b03-bdd8-7f9f301a0dbf)
-
-
 ![image](https://github.com/anapartner-com/quay-registry/assets/51460618/44ff77ed-5f90-43eb-974f-3e07ade2c6c9)
