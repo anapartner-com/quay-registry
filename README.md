@@ -1,5 +1,5 @@
 # quay-registry
-Use RedHat mirror-registry package to create a Quay container registry<b>
+Use RedHat mirror-registry package to create a Quay container registry.  
 Recommend adding LetsEncrypt certs to avoid TLS issues with self-signed certs.
 
 wget -nv -N  https://developers.redhat.com/content-gateway/rest/mirror/pub/openshift-v4/clients/mirror-registry/latest/mirror-registry.tar.gz
