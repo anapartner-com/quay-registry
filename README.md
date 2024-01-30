@@ -12,7 +12,9 @@ wget -nv -N  https://developers.redhat.com/content-gateway/rest/mirror/pub/opens
 ![image](https://github.com/anapartner-com/quay-registry/assets/51460618/10a53ef0-dfc7-452a-b09a-4ab44e332340)
 
 ### Start and stop containers with 'systemctl' processes
-```View systemctl processes created for all three (3) containers - type the below command:
+```
+View systemctl processes created for all three (3) containers - type the below command:
+
  systemctl stop   quay-app.service
  systemctl start  quay-app.service
  systemctl status quay-app.service
@@ -23,7 +25,7 @@ wget -nv -N  https://developers.redhat.com/content-gateway/rest/mirror/pub/opens
 ### To replace TLS certs, stop/start the primary container:
 
 ```
-systemctl stop quay-app.service
+ systemctl stop quay-app.service
  cp -r -p new_cert.pem ${REGISTRY_FOLDER}/quay-config/ssl.cert
  cp -r -p new_ssl.key  ${REGISTRY_FOLDER}/quay-config/ssl.key
  systemctl start quay-app.service
