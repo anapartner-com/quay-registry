@@ -13,11 +13,16 @@ wget -nv -N  https://developers.redhat.com/content-gateway/rest/mirror/pub/opens
 
 ### Start and stop containers with 'systemctl' processes
 ```View systemctl processes created for all three (3) containers - type the below command:
- systemctl cat quay*.service --no-pager
+ systemctl stop   quay-app.service
+ systemctl start  quay-app.service
+ systemctl status quay-app.service
+ systemctl cat    quay*.service --no-pager
+```
 
-To replace TLS certs, stop/start the primary container:
 
- systemctl stop quay-app.service
+### To replace TLS certs, stop/start the primary container:
+
+``` systemctl stop quay-app.service
  cp -r -p new_cert.pem ${REGISTRY_FOLDER}/quay-config/ssl.cert
  cp -r -p new_ssl.key  ${REGISTRY_FOLDER}/quay-config/ssl.key
  systemctl start quay-app.service
