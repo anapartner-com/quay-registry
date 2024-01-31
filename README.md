@@ -172,7 +172,7 @@ RestartSec=30
 WantedBy=multi-user.target default.target
 ```
 
-### View the podman volumes that remain
+### View the podman volumes for the containers 
 ```
 podman volume ls | grep storage
 local       pg-storage
