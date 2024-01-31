@@ -270,7 +270,7 @@ If we drill into both the docker hub location and our new Quay registry, we can 
 ### Using podman exec to view internals of containers
 The containers have minimal binaries to examine them. <br>
 If we cat the /etc/os-release, we can see what OS flavor is being used within the container.<br>
-To add additional tools, we will leverage the 'microdnf' binary that is included to add additional packages. <br>
+To add additional packages/tools, we will leverage the 'microdnf' binary that is included in these containers. <br>
 Note:  We will need to disable one default repo to allow use of 'microdnf' as 'root' user. 
 ```
 podman exec --user root -it quay-app sh
