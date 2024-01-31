@@ -238,6 +238,21 @@ It will be shown in systemctl for quay-app with the -v switch.
 
 ```podman run --rm --interactive --tty --workdir /runner/project --net host -v /media/openshift-offline/image-archive.tar:/runner/image-archive.tar -v /root/labs/letsencrypt/combined_chain_with_cert.pem:/runner/certs/quay.cert:Z -v /root/labs/letsencrypt/privkey.pem:/runner/certs/quay.key:Z -v /root/.ssh/quay_installer:/runner/env/ssh_key -e RUNNER_OMIT_EVENTS=False -e RUNNER_ONLY_FAILED_EVENTS=False -e ANSIBLE_HOST_KEY_CHECKING=False -e ANSIBLE_CONFIG=/runner/project/ansible.cfg -e ANSIBLE_NOCOLOR=false --quiet --name ansible_runner_instance quay.io/quay/mirror-registry-ee:latest ansible-playbook -i root@registry.ocp.anapartner.dev, --private-key /runner/env/ssh_key -e "init_user=init init_password=Password01 quay_image=registry.redhat.io/quay/quay-rhel8:v3.8.10 quay_version=v3.8.10 redis_image=registry.redhat.io/rhel8/redis-6:1-92.1669834635 postgres_image=registry.redhat.io/rhel8/postgresql-10:1-203.1669834630 pause_image=registry.access.redhat.com/ubi8/pause:8.7-6 quay_hostname=registry.ocp.anapartner.dev:8443 local_install=true quay_root=/media/mirror-registry quay_storage=quay-storage pg_storage=pg-storage" install_mirror_appliance.ym```
 
+### Testing with skopeo  
+The skopeo package allows us to by pass the pull/tag/push process to a single push process.
+```
+sudo dnf -y install skopeo
+
+skopeo login -u registry -p Password01 registry.ocp.anapartner.dev
+Login Succeeded!
+
+skopeo copy   --preserve-digests  --override-arch amd64 docker://docker.io/library/busybox:latest docker://registry.ocp.anapartner.dev/library/busybox:latest
+Getting image source signatures
+Copying blob 9ad63333ebc9 done
+Copying config 3f57d9401f done
+Writing manifest to image destination
+```
+
 
 ### Warning messages to ignore (seen when using verbose mode)
 
