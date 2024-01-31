@@ -48,7 +48,7 @@ View systemctl processes created for all three (3) containers: (example below fo
 
 ![image](https://github.com/anapartner-com/quay-registry/assets/51460618/4e7b3fcf-d495-42d8-9b99-d9eb0dbf4bdd)
 
-### Error messages to address due to unused container volumes (need clean up)<br>
+### Error message due to unused container volumes (need clean up)<br>
 "allocating lock for new volume: allocation failed; exceeded num_locks"
 
 ![image](https://github.com/anapartner-com/quay-registry/assets/51460618/44ff77ed-5f90-43eb-974f-3e07ade2c6c9)
