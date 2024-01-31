@@ -1,5 +1,5 @@
 # quay-registry
-Use [RedHat mirror-registry package[(https://docs.openshift.com/container-platform/4.14/installing/disconnected_install/installing-mirroring-creating-registry.html) to create a Quay container registry.  
+Use [RedHat mirror-registry package](https://docs.openshift.com/container-platform/4.14/installing/disconnected_install/installing-mirroring-creating-registry.html) to create a Quay container registry.  
 [quay-registry](quay-registry.sh)  This registry deployment process uses podman to deploy containers.<br>
 
 Recommend adding LetsEncrypt certs to avoid TLS issues with self-signed certs. <br>
