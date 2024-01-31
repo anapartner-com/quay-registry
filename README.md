@@ -281,7 +281,7 @@ top -c
 ip a
 ```
 
-![image](https://github.com/anapartner-com/quay-registry/assets/51460618/6870350e-c12e-4391-85c9-b624e45f83cc)
+![image](https://github.com/anapartner-com/quay-registry/assets/51460618/5183efa2-17d0-4e18-b9b2-d3b11b6b3997)
 
 
 
