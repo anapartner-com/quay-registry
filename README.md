@@ -281,6 +281,10 @@ top -c
 ip a
 ```
 
+![image](https://github.com/anapartner-com/quay-registry/assets/51460618/6870350e-c12e-4391-85c9-b624e45f83cc)
+
+
+
 ### Warning messages to ignore (seen when using verbose mode)
 
 ![image](https://github.com/anapartner-com/quay-registry/assets/51460618/4e7b3fcf-d495-42d8-9b99-d9eb0dbf4bdd)
