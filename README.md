@@ -233,7 +233,7 @@ podman volume inspect quay-storage
 ```
 
 ### Quay configuration location
-We have this mapped in the script to a known local folder location.<br>
+We have this mapped in the script to a known local folder location on the host to a location within the container.<br>
 It will be shown in systemctl for quay-app with the -v switch.
 ```
 -v /media/mirror-registry/quay-config:/quay-registry/conf/stack:Z
