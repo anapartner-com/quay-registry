@@ -202,8 +202,8 @@ podman volume inspect pg-storage
      }
 ]
 ```
-By default, the quay-storage volume is where any uploaded containers will reside within the registry.
-To compare, if [docker registry](https://hub.docker.com/_/registry) is used with on-prem, you may change this mount point to a NFS share.
+By default, the quay-storage volume is where any uploaded containers will reside within the registry.<br>
+To compare, if [docker registry](https://hub.docker.com/_/registry) is used with airgap/on-premise deployments, you may change this mount point to a NFS share.
 ```
 podman volume inspect quay-storage
 [
