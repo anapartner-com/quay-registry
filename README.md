@@ -179,6 +179,48 @@ local       pg-storage
 local       quay-storage
 ```
 
+### Inspect the podman volumes
+
+```
+podman volume inspect pg-storage
+[
+     {
+          "Name": "pg-storage",
+          "Driver": "local",
+          "Mountpoint": "/var/lib/containers/storage/volumes/pg-storage/_data",
+          "CreatedAt": "2024-01-30T15:44:13.204183872-05:00",
+          "Labels": {},
+          "Scope": "local",
+          "Options": {},
+          "UID": 26,
+          "GID": 26,
+          "MountCount": 0,
+          "NeedsCopyUp": true,
+          "LockNumber": 38
+     }
+]
+```
+```
+podman volume inspect quay-storage
+[
+     {
+          "Name": "quay-storage",
+          "Driver": "local",
+          "Mountpoint": "/var/lib/containers/storage/volumes/quay-storage/_data",
+          "CreatedAt": "2024-01-30T10:07:48.308493879-05:00",
+          "Labels": {},
+          "Scope": "local",
+          "Options": {},
+          "UID": 1001,
+          "MountCount": 0,
+          "NeedsCopyUp": true,
+          "LockNumber": 8
+     }
+]
+```
+
+
+
 ### View of embedded images within "mirror-registry" package
 ![image](https://github.com/anapartner-com/quay-registry/assets/51460618/fbaf028d-d1a8-4862-b2b1-e1538934ca69)
 
