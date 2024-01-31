@@ -42,6 +42,37 @@ View systemctl processes created for all four (4) containers: (example below for
 Notice the stop function (ExecStopPost) showcases the ephemeral nature of containers as the pods are complete removed. <br>
 
 systemctl cat    quay*.service --no-pager <br>
+
+```
+# /etc/systemd/system/quay-pod.service
+[Unit]
+Description=Infra Container for Quay
+Wants=network.target
+After=network-online.target
+Before=quay-postgres.service quay-redis.service
+
+[Service]
+Type=simple
+RemainAfterExit=yes
+TimeoutStartSec=5m
+ExecStartPre=-/bin/rm -f %t/%n-pid %t/%n-pod-id
+ExecStart=/usr/bin/podman pod create \
+    --name quay-pod \
+    --infra-image registry.access.redhat.com/ubi8/pause:8.7-6 \
+    --publish 443:8443 \
+    --pod-id-file %t/%n-pod-id \
+    --replace
+ExecStop=-/usr/bin/podman pod stop --ignore --pod-id-file %t/%n-pod-id -t 10
+ExecStopPost=-/usr/bin/podman pod rm --ignore -f --pod-id-file %t/%n-pod-id
+PIDFile=%t/%n-pid
+KillMode=none
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target default.target
+```
+
 ```
 # /etc/systemd/system/quay-postgres.service
 [Unit]
@@ -69,6 +100,39 @@ ExecStart=/usr/bin/podman run \
 
 ExecStop=/usr/bin/podman stop --ignore --cidfile %t/%n-cid -t 10
 ExecStopPost=/usr/bin/podman rm --ignore -f --cidfile %t/%n-cid
+PIDFile=%t/%n-pid
+KillMode=none
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target default.target
+```
+
+```
+# /etc/systemd/system/quay-redis.service
+[Unit]
+Description=Redis Podman Container for Quay
+Wants=network.target
+After=network-online.target quay-pod.service
+Requires=quay-pod.service
+
+[Service]
+Type=simple
+TimeoutStartSec=5m
+ExecStartPre=-/bin/rm -f %t/%n-pid %t/%n-cid
+ExecStart=/usr/bin/podman run \
+    --name quay-redis \
+    -e REDIS_PASSWORD=password \
+    --pod=quay-pod \
+    --conmon-pidfile %t/%n-pid \
+    --cidfile %t/%n-cid \
+    --cgroups=no-conmon \
+    --replace \
+    registry.redhat.io/rhel8/redis-6:1-92.1669834635
+
+ExecStop=-/usr/bin/podman stop --ignore --cidfile %t/%n-cid -t 10
+ExecStopPost=-/usr/bin/podman rm --ignore -f --cidfile %t/%n-cid
 PIDFile=%t/%n-pid
 KillMode=none
 Restart=always
@@ -112,67 +176,6 @@ RestartSec=30
 WantedBy=multi-user.target default.target
 ```
 
-```
-# /etc/systemd/system/quay-pod.service
-[Unit]
-Description=Infra Container for Quay
-Wants=network.target
-After=network-online.target
-Before=quay-postgres.service quay-redis.service
-
-[Service]
-Type=simple
-RemainAfterExit=yes
-TimeoutStartSec=5m
-ExecStartPre=-/bin/rm -f %t/%n-pid %t/%n-pod-id
-ExecStart=/usr/bin/podman pod create \
-    --name quay-pod \
-    --infra-image registry.access.redhat.com/ubi8/pause:8.7-6 \
-    --publish 443:8443 \
-    --pod-id-file %t/%n-pod-id \
-    --replace
-ExecStop=-/usr/bin/podman pod stop --ignore --pod-id-file %t/%n-pod-id -t 10
-ExecStopPost=-/usr/bin/podman pod rm --ignore -f --pod-id-file %t/%n-pod-id
-PIDFile=%t/%n-pid
-KillMode=none
-Restart=always
-RestartSec=30
-
-[Install]
-WantedBy=multi-user.target default.target
-```
-```
-# /etc/systemd/system/quay-redis.service
-[Unit]
-Description=Redis Podman Container for Quay
-Wants=network.target
-After=network-online.target quay-pod.service
-Requires=quay-pod.service
-
-[Service]
-Type=simple
-TimeoutStartSec=5m
-ExecStartPre=-/bin/rm -f %t/%n-pid %t/%n-cid
-ExecStart=/usr/bin/podman run \
-    --name quay-redis \
-    -e REDIS_PASSWORD=password \
-    --pod=quay-pod \
-    --conmon-pidfile %t/%n-pid \
-    --cidfile %t/%n-cid \
-    --cgroups=no-conmon \
-    --replace \
-    registry.redhat.io/rhel8/redis-6:1-92.1669834635
-
-ExecStop=-/usr/bin/podman stop --ignore --cidfile %t/%n-cid -t 10
-ExecStopPost=-/usr/bin/podman rm --ignore -f --cidfile %t/%n-cid
-PIDFile=%t/%n-pid
-KillMode=none
-Restart=always
-RestartSec=30
-
-[Install]
-WantedBy=multi-user.target default.target
-```
 
 ### View the podman volumes for the containers 
 ```
