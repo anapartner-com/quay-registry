@@ -306,4 +306,5 @@ nmcli connection show
 ![image](https://github.com/anapartner-com/quay-registry/assets/51460618/44ff77ed-5f90-43eb-974f-3e07ade2c6c9)
 
 ### Reference - Red Quay Full Release
+If you need full features of Quay, review the Red Hat docs.
 [Red Hat Quay Full](https://access.redhat.com/documentation/en-us/red_hat_quay/3.10/html/proof_of_concept_-_deploying_red_hat_quay/index)
