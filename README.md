@@ -280,8 +280,7 @@ netstat -anp
 top -c
 ip a
 ```
-
-![image](https://github.com/anapartner-com/quay-registry/assets/51460618/5183efa2-17d0-4e18-b9b2-d3b11b6b3997)
+![image](https://github.com/anapartner-com/quay-registry/assets/51460618/fd5b8137-766c-410f-894b-311394e8a526)
 
 
 
