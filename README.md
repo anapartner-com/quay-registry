@@ -252,10 +252,10 @@ Copying blob 9ad63333ebc9 done
 Copying config 3f57d9401f done
 Writing manifest to image destination
 ```
-We can now see the new container loaded (with the SAME exact SHA manifest)
+We can now see the new container loaded (with the SAME exact SHA digest manifest)
 ![image](https://github.com/anapartner-com/quay-registry/assets/51460618/fd16f1f5-2a7f-499a-877a-e070de534c47)
 
-If we drill into both the docker hub location and our new Quay registry, we can see the skopeo process ensured that we ONLY got the exact container we wished.  Which is important when we have 'helm install' packages that deploy containers not by name:version but by an exact mainfest SHA value.
+If we drill into both the docker hub location and our new Quay registry, we can see the skopeo process ensured that we ONLY got the exact container we wished.  Which is important when we have 'helm install' packages that deploy containers not by name:version but by an exact mainfest SHA digest value.
 ![image](https://github.com/anapartner-com/quay-registry/assets/51460618/206d84e0-6b0d-4835-bb43-dc2299a61123)
 
 
