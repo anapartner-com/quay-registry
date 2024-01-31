@@ -40,7 +40,7 @@ View systemctl processes created for all four (4) containers: (example below for
 
 ### View of the systemctl services of all four (4) containers:
 Notice the stop function (ExecStopPost) showcases the ephemeral nature of containers as the containers are completely removed. <br>
-The first systemd service is to setup the pod (podman pod create), and the next three (3) systemd services will add containers to the pod (--pod=quay-pod), to share networking service.  
+The first systemd service is to setup the pod (podman pod create), and the next three (3) systemd services will add containers to the pod (--pod=quay-pod), to share networking and other shared services.  
 Only the quay-pod is exposed on the published port (--publish 443:8443).  No other network port/protocol is exposed <br>
 
 systemctl cat    quay*.service --no-pager <br>
