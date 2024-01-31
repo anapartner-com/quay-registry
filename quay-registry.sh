@@ -174,6 +174,7 @@ podman login -u ${USERNAME} -p ${PASSWORD} ${REGISTRY}:${PORT} --authfile $HOME/
 echo ""
 timestamp
 echo "#################################################################################################"
+# Important note: service must equal the hostname AND port to return the correct API token and not a credential token
 echo "curl -s -u \"${USERNAME}:${PASSWORD}\" -X GET \"https://${REGISTRY}:${PORT}/v2/auth?account=${USERNAME}&client_id=docker&offline_token=true&service=${REGISTRY}:${PORT}\" | jq -r .token"
 TOKEN=$(curl -s -u "${USERNAME}:${PASSWORD}" -X GET "https://${REGISTRY}:${PORT}/v2/auth?account=${USERNAME}&client_id=docker&offline_token=true&service=${REGISTRY}:${PORT}" | jq -r .token)
 
