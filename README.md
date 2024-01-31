@@ -78,7 +78,7 @@ RestartSec=30
 [Install]
 WantedBy=multi-user.target default.target
 ```
-Primary database for Quay Container Registry
+PostGres is the primary database for Quay Registry
 ```
 # /etc/systemd/system/quay-postgres.service
 [Unit]
