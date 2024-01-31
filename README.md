@@ -252,6 +252,9 @@ Copying blob 9ad63333ebc9 done
 Copying config 3f57d9401f done
 Writing manifest to image destination
 ```
+We can now see the new container loaded (with the SAME exact SHA manifest)
+![image](https://github.com/anapartner-com/quay-registry/assets/51460618/fd16f1f5-2a7f-499a-877a-e070de534c47)
+
 
 
 ### Warning messages to ignore (seen when using verbose mode)
