@@ -182,7 +182,7 @@ local       quay-storage
 
 ### Inspect the podman volumes
 
-This location, pg-storage, is used to host Quay registry and any organization customization <br>
+pg-storage is used to host Quay registry, organization, inventory of containers, and UI customization <br>
 ```
 podman volume inspect pg-storage
 [
