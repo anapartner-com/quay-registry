@@ -13,7 +13,7 @@ Recommend that the workstation/server have free disk space > 350-1000 GB to host
 
 
 ### View of running four (4) containers within a single pod
-'SHORT:   podman ps -a --pod     ' OR 'LONG:    podman ps -a --pod --format json  '
+SHORT:   podman ps -a --pod       OR  LONG:    podman ps -a --pod --format json  
 
 ![image](https://github.com/anapartner-com/quay-registry/assets/51460618/42d03274-a44d-4d43-bb97-1ac299c740e1)
 
