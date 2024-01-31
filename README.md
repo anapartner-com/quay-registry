@@ -3,6 +3,7 @@ Use [RedHat mirror-registry package](https://docs.openshift.com/container-platfo
 This registry package deployment process uses podman to deploy containers. [quay-registry](quay-registry.sh)  <br>
 
 Recommend adding LetsEncrypt certs to avoid browser TLS challenges with self-signed certs. <br>
+Recommend that the workstation/server have free disk space > 100 GB - 1 TB to host containers in the registry.
 
 
 wget -nv -N  https://developers.redhat.com/content-gateway/rest/mirror/pub/openshift-v4/clients/mirror-registry/latest/mirror-registry.tar.gz<br>
