@@ -12,12 +12,12 @@ Recommend that the workstation/server have free disk space > 350-1000 GB to host
 ![image](https://github.com/anapartner-com/quay-registry/assets/51460618/9b3e6426-d4fc-4e62-b29b-e8be01f0f72d)
 
 
-### View of running containers
+### View of running four (4) containers
 ![image](https://github.com/anapartner-com/quay-registry/assets/51460618/10a53ef0-dfc7-452a-b09a-4ab44e332340)
 
 ### Start and stop containers with 'systemctl' processes
 ```
-View systemctl processes created for all three (3) containers: (example below for quay-app container)
+View systemctl processes created for all four (4) containers: (example below for quay-app container)
 
  systemctl stop   quay-app.service
  systemctl start  quay-app.service
@@ -26,7 +26,7 @@ View systemctl processes created for all three (3) containers: (example below fo
 ```
 
 
-### To replace TLS certs, stop/start the primary container:
+### To replace TLS certs, stop/start the primary container (quay-app):
 
 ```
  systemctl stop quay-app.service
@@ -37,7 +37,7 @@ View systemctl processes created for all three (3) containers: (example below fo
 ```
 
 
-### View of the systemctl services
+### View of the systemctl services of all four (4) containers:
 systemctl cat    quay*.service --no-pager <br>
 ```
 # /etc/systemd/system/quay-postgres.service
@@ -73,7 +73,9 @@ RestartSec=30
 
 [Install]
 WantedBy=multi-user.target default.target
+```
 
+```
 # /etc/systemd/system/quay-app.service
 [Unit]
 Description=Quay Container
@@ -105,7 +107,9 @@ RestartSec=30
 
 [Install]
 WantedBy=multi-user.target default.target
+```
 
+```
 # /etc/systemd/system/quay-pod.service
 [Unit]
 Description=Infra Container for Quay
@@ -133,8 +137,8 @@ RestartSec=30
 
 [Install]
 WantedBy=multi-user.target default.target
-
-
+```
+```
 # /etc/systemd/system/quay-redis.service
 [Unit]
 Description=Redis Podman Container for Quay
