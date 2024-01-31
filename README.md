@@ -284,6 +284,15 @@ ip a
 ```
 ![image](https://github.com/anapartner-com/quay-registry/assets/51460618/fd5b8137-766c-410f-894b-311394e8a526)
 
+### View podman network
+[podman network reference](https://www.redhat.com/sysadmin/container-ip-address-podman)
+```
+podman pod ps --ctr-names
+podman network ls
+podman network inspect podman
+nmcli connection show
+```
+![image](https://github.com/anapartner-com/quay-registry/assets/51460618/48a01dd2-4c2f-4b66-b6ec-e08ca01aef3f)
 
 
 ### Warning messages to ignore (seen when using verbose mode during initial deployment)
