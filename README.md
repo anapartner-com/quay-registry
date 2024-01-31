@@ -37,6 +37,137 @@ View systemctl processes created for all three (3) containers: (example below fo
 ```
 
 
+### View of the systemctl services
+systemctl cat    quay*.service --no-pager <br>
+```
+# /etc/systemd/system/quay-postgres.service
+[Unit]
+Description=PostgreSQL Podman Container for Quay
+Wants=network.target
+After=network-online.target quay-pod.service
+Requires=quay-pod.service
+
+[Service]
+Type=simple
+TimeoutStartSec=5m
+ExecStartPre=-/bin/rm -f %t/%n-pid %t/%n-cid
+ExecStart=/usr/bin/podman run \
+    --name quay-postgres \
+    -v pg-storage:/var/lib/pgsql/data:Z \
+    -e POSTGRESQL_USER=user \
+    -e POSTGRESQL_PASSWORD=password \
+    -e POSTGRESQL_DATABASE=quay \
+    --pod=quay-pod \
+    --conmon-pidfile %t/%n-pid \
+    --cidfile %t/%n-cid \
+    --cgroups=no-conmon \
+    --replace \
+    registry.redhat.io/rhel8/postgresql-10:1-203.1669834630
+
+ExecStop=/usr/bin/podman stop --ignore --cidfile %t/%n-cid -t 10
+ExecStopPost=/usr/bin/podman rm --ignore -f --cidfile %t/%n-cid
+PIDFile=%t/%n-pid
+KillMode=none
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target default.target
+
+# /etc/systemd/system/quay-app.service
+[Unit]
+Description=Quay Container
+Wants=network.target
+After=network-online.target quay-pod.service quay-postgres.service quay-redis.service
+Requires=quay-pod.service quay-postgres.service quay-redis.service
+
+[Service]
+Type=simple
+TimeoutStartSec=5m
+ExecStartPre=-/bin/rm -f %t/%n-pid %t/%n-cid
+ExecStart=/usr/bin/podman run \
+    --name quay-app \
+    -v /media/mirror-registry/quay-config:/quay-registry/conf/stack:Z \
+    -v quay-storage:/datastorage:Z \
+    --pod=quay-pod \
+    --conmon-pidfile %t/%n-pid \
+    --cidfile %t/%n-cid \
+    --cgroups=no-conmon \
+    --replace \
+    registry.redhat.io/quay/quay-rhel8:v3.8.14
+
+ExecStop=-/usr/bin/podman stop --ignore --cidfile %t/%n-cid -t 10
+ExecStopPost=-/usr/bin/podman rm --ignore -f --cidfile %t/%n-cid
+PIDFile=%t/%n-pid
+KillMode=none
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target default.target
+
+# /etc/systemd/system/quay-pod.service
+[Unit]
+Description=Infra Container for Quay
+Wants=network.target
+After=network-online.target
+Before=quay-postgres.service quay-redis.service
+
+[Service]
+Type=simple
+RemainAfterExit=yes
+TimeoutStartSec=5m
+ExecStartPre=-/bin/rm -f %t/%n-pid %t/%n-pod-id
+ExecStart=/usr/bin/podman pod create \
+    --name quay-pod \
+    --infra-image registry.access.redhat.com/ubi8/pause:8.7-6 \
+    --publish 443:8443 \
+    --pod-id-file %t/%n-pod-id \
+    --replace
+ExecStop=-/usr/bin/podman pod stop --ignore --pod-id-file %t/%n-pod-id -t 10
+ExecStopPost=-/usr/bin/podman pod rm --ignore -f --pod-id-file %t/%n-pod-id
+PIDFile=%t/%n-pid
+KillMode=none
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target default.target
+
+
+# /etc/systemd/system/quay-redis.service
+[Unit]
+Description=Redis Podman Container for Quay
+Wants=network.target
+After=network-online.target quay-pod.service
+Requires=quay-pod.service
+
+[Service]
+Type=simple
+TimeoutStartSec=5m
+ExecStartPre=-/bin/rm -f %t/%n-pid %t/%n-cid
+ExecStart=/usr/bin/podman run \
+    --name quay-redis \
+    -e REDIS_PASSWORD=password \
+    --pod=quay-pod \
+    --conmon-pidfile %t/%n-pid \
+    --cidfile %t/%n-cid \
+    --cgroups=no-conmon \
+    --replace \
+    registry.redhat.io/rhel8/redis-6:1-92.1669834635
+
+ExecStop=-/usr/bin/podman stop --ignore --cidfile %t/%n-cid -t 10
+ExecStopPost=-/usr/bin/podman rm --ignore -f --cidfile %t/%n-cid
+PIDFile=%t/%n-pid
+KillMode=none
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target default.target
+```
+
+
 ### View of embedded images within "mirror-registry" package
 ![image](https://github.com/anapartner-com/quay-registry/assets/51460618/fbaf028d-d1a8-4862-b2b1-e1538934ca69)
 
@@ -53,3 +184,4 @@ View systemctl processes created for all three (3) containers: (example below fo
 "allocating lock for new volume: allocation failed; exceeded num_locks"
 
 ![image](https://github.com/anapartner-com/quay-registry/assets/51460618/44ff77ed-5f90-43eb-974f-3e07ade2c6c9)
+
