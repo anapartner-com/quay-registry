@@ -1,9 +1,9 @@
 #!/bin/bash
 #####################################################################################################
 #
-#  Goal: Deploy a limited version of RHEL Quay Registry using their binary: mirror-registry
-#   - This is a limited version of Quay that was designed to be used with OpenShift deployments
-#   - This version is still useful for learning about container registries and the Quay UI
+#  Goal: Deploy a streamlined version of RHEL Quay Registry using their binary: mirror-registry
+#   - This version of Quay that was designed to be used with OpenShift deployments
+#   - This deployment is useful for learning about container registries and the Quay UI
 #   - mirror-registry binary uses an Ansible container to deploy these Quay containers
 #
 #
