@@ -264,6 +264,22 @@ We can now see the new container loaded (with the SAME exact SHA digest manifest
 If we drill into both the docker hub location and our new Quay registry, we can see the skopeo process ensured that we ONLY got the exact container we wished.  Which is important when we have 'helm install' packages that deploy containers not by name:version but by an exact mainfest SHA digest value.
 ![image](https://github.com/anapartner-com/quay-registry/assets/51460618/206d84e0-6b0d-4835-bb43-dc2299a61123)
 
+### Using podman exec to view internals of containers
+The containers have minimal binaries to examine them. <br>
+If we cat the /etc/os-release, we can see what OS flavor is being used within the container.<br>
+To add additional tools, we will leverage the 'microdnf' binary that is included to add additional packages. <br>
+Note:  We will need to disable one defautl repo to allow use of 'microdnf' as 'root' user. 
+```
+podman exec --user root -it quay-app sh
+
+find /etc/yum.repos.d/ -type f -name 'odcs-*' -exec mv {} {}.org \; ls -lart /etc/yum.repos.d/
+
+microdnf -y install procps-ng iproute net-tools
+
+netstat -anp
+top -c
+ip a
+```
 
 ### Warning messages to ignore (seen when using verbose mode)
 
