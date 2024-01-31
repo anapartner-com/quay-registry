@@ -13,7 +13,8 @@ Recommend that the workstation/server have free disk space > 350-1000 GB to host
 
 
 ### View of running four (4) containers within a single pod
-![image](https://github.com/anapartner-com/quay-registry/assets/51460618/d77df183-cdbf-4e4d-99a0-16ff986de44e)
+
+![image](https://github.com/anapartner-com/quay-registry/assets/51460618/42d03274-a44d-4d43-bb97-1ac299c740e1)
 
 
 ### Start and stop containers with 'systemctl' processes
