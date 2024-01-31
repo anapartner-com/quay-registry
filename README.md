@@ -78,7 +78,7 @@ RestartSec=30
 [Install]
 WantedBy=multi-user.target default.target
 ```
-
+Primary database for Quay Container Registry
 ```
 # /etc/systemd/system/quay-postgres.service
 [Unit]
@@ -114,7 +114,7 @@ RestartSec=30
 [Install]
 WantedBy=multi-user.target default.target
 ```
-
+Redis container is 'in-memory key-value store' used to speed up performance to PostGres DB
 ```
 # /etc/systemd/system/quay-redis.service
 [Unit]
@@ -147,7 +147,7 @@ RestartSec=30
 [Install]
 WantedBy=multi-user.target default.target
 ```
-
+Quay Registry container
 ```
 # /etc/systemd/system/quay-app.service
 [Unit]
