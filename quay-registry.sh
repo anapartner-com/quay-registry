@@ -184,6 +184,7 @@ TOKEN for local ${REGISTRY}:${PORT} is: ${TOKEN}
 curl -sL -H \"Authorization: Bearer ${TOKEN}\"   \"https://${REGISTRY}:${PORT}/v2/_catalog\" | jq -r
 
 "
+# Run the below command to view current registry catalog
 curl -sL -H "Authorization: Bearer ${TOKEN}"   "https://${REGISTRY}:${PORT}/v2/_catalog" | jq -r
 
 echo "
