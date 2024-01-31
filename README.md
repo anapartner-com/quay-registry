@@ -38,7 +38,7 @@ View systemctl processes created for all four (4) containers: (example below for
 
 
 ### View of the systemctl services of all four (4) containers:
-Notice the stop function showcases the ephemeral nature of containers as the pods are complete removed. <br>
+Notice the stop function (ExecStopPost) showcases the ephemeral nature of containers as the pods are complete removed. <br>
 
 systemctl cat    quay*.service --no-pager <br>
 ```
