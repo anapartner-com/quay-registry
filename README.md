@@ -16,7 +16,7 @@ wget -nv -N  https://developers.redhat.com/content-gateway/rest/mirror/pub/opens
 
 ### Start and stop containers with 'systemctl' processes
 ```
-View systemctl processes created for all three (3) containers - type the below command:
+View systemctl processes created for all three (3) containers: (example below for quay-app container)
 
  systemctl stop   quay-app.service
  systemctl start  quay-app.service
