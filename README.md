@@ -114,7 +114,7 @@ RestartSec=30
 [Install]
 WantedBy=multi-user.target default.target
 ```
-Redis container is 'in-memory key-value store' used to speed up performance to PostGres DB
+[Redis](https://redis.io/docs/about/) container is 'in-memory key-value store' used to speed up performance to PostGres DB
 ```
 # /etc/systemd/system/quay-redis.service
 [Unit]
