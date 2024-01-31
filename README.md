@@ -1,7 +1,6 @@
 # quay-registry
 Use RedHat mirror-registry package to create a Quay container registry.  
-[quay-registry](quay-registry.sh) <br>
-This container registry uses podman to deploy containers.<br>
+[quay-registry](quay-registry.sh)  This container registry uses podman to deploy containers.<br>
 
 Recommend adding LetsEncrypt certs to avoid TLS issues with self-signed certs. <br>
 
