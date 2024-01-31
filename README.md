@@ -200,6 +200,7 @@ podman volume inspect pg-storage
      }
 ]
 ```
+By default, the quay-storage volume is where any uploaded containers will reside within the registry.
 ```
 podman volume inspect quay-storage
 [
@@ -219,6 +220,12 @@ podman volume inspect quay-storage
 ]
 ```
 
+### Quay configuration location
+We have this mapped in the script to a known local folder location.<br>
+It will be shown in systemctl for quay-app with the -v switch.
+```
+-v /media/mirror-registry/quay-config:/quay-registry/conf/stack:Z
+```
 
 
 ### View of embedded images within "mirror-registry" package
