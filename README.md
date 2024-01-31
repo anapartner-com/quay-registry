@@ -38,6 +38,7 @@ View systemctl processes created for all four (4) containers: (example below for
 
 
 ### View of the systemctl services of all four (4) containers:
+View the use of podman that showcases the ephemeral nature of containers. <br>
 systemctl cat    quay*.service --no-pager <br>
 ```
 # /etc/systemd/system/quay-postgres.service
@@ -171,6 +172,12 @@ RestartSec=30
 WantedBy=multi-user.target default.target
 ```
 
+### View the podman volumes that remain
+```
+podman volume ls | grep storage
+local       pg-storage
+local       quay-storage
+```
 
 ### View of embedded images within "mirror-registry" package
 ![image](https://github.com/anapartner-com/quay-registry/assets/51460618/fbaf028d-d1a8-4862-b2b1-e1538934ca69)
