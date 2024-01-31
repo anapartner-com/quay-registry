@@ -1,6 +1,6 @@
 # quay-registry
 Use [RedHat mirror-registry package](https://docs.openshift.com/container-platform/4.14/installing/disconnected_install/installing-mirroring-creating-registry.html) to create a streamlined Quay container registry.  <br>
-This registry package deployment process uses podman to deploy containers. [quay-registry](quay-registry.sh)  <br>
+This registry package deployment process uses podman to deploy containers. <br> [quay-registry](quay-registry.sh)  <br>
 
 Recommend adding LetsEncrypt certs to avoid browser TLS challenges with self-signed certs. <br>
 Recommend that the workstation/server have free disk space > 350-1000 GB to host OpenShift containers and others within the registry
