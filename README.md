@@ -6,7 +6,7 @@ Recommend adding LetsEncrypt certs to avoid browser TLS challenges with self-sig
 Recommend that the workstation/server have free disk space > 100-1000 GB to host containers in the registry.
 
 
-wget -nv -N  https://developers.redhat.com/content-gateway/rest/mirror/pub/openshift-v4/clients/mirror-registry/latest/mirror-registry.tar.gz<br>
+[mirror-registry.tar.gz](https://developers.redhat.com/content-gateway/rest/mirror/pub/openshift-v4/clients/mirror-registry/latest/mirror-registry.tar.gz)<br>
 
 
 ![image](https://github.com/anapartner-com/quay-registry/assets/51460618/9b3e6426-d4fc-4e62-b29b-e8be01f0f72d)
